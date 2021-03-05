@@ -27,6 +27,21 @@ abstract class IOUtils {
     }
   }
 
+  /// ### Writes array to _filePath_
+  /// 
+  /// * If file type isn't a json then throws [Exception]
+  /// 
+  /// * If file contains no [int] array inside **'data'** part of json
+  /// then throws [Exception]
+  static Future<void> arrayToJson(String filePath, List<int> array) async {
+    if (!_validateIfJson(filePath)) throw Exception();
+
+    // Put array into 'data' part of map and encode to json
+    // Then write json string to file
+    final arrayJsonString = json.encode({'data' : array});
+    await File(filePath).writeAsString(arrayJsonString);
+  }
+
   /// ### Returns if file type is _.json_
   static bool _validateIfJson(String filePath) {
     try {
