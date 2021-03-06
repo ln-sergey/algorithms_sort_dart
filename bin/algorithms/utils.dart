@@ -1,5 +1,5 @@
-void swap(int var1, int var2) {
-  final tmp = var1;
-  var1 = var2;
-  var2 = tmp;
+void swap(List<int> array, int index1, int index2) {
+  final tmp = array[index1];
+  array[index1] = array[index2];
+  array[index2] = tmp;
 }
